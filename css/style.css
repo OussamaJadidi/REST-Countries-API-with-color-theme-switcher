@@ -1,0 +1,56 @@
+:root{
+    --dm-background: hsl(207, 26%, 17%);
+    --dm-text: hsl(0, 0%, 100%);
+    --dm-elements: hsl(209, 23%, 22%);
+
+    --lm-inputs: hsl(0, 0%, 52%);
+
+    --lm-background: hsl(0, 0%, 98%);
+    --lm-text: hsl(200, 15%, 8%);
+    --lm-elements: hsl(0, 0%, 100%); 
+}
+
+*{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* I will work with CUBE css metholodogie + write my classes with BEM metholodogie way  */
+/* Start Compositions  */
+.container{
+    width: 90rem;
+    margin: auto;
+    padding-inline: 2rem;
+}
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    justify-content: center;
+}
+/* End Compositions  */
+/* Start utilities classes  */
+.fw-300{
+    font-weight: 300;
+}
+.fw-600{
+    font-weight: 600;
+}
+.fw-800{
+    font-weight: 800;
+}
+.lm-text{
+    color: var(--lm-text)
+}
+.lm-elemnts{
+    color: var(--lm-elements)
+}
+.dm-text{
+    color: var(--dm-text)
+}
+.dm-elements{
+    color: var(--dm-elements)
+}
+
+/* End utilities classes  */
+/* Start blocks */
+/* End blocks */
