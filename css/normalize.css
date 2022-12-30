@@ -364,3 +364,7 @@ a{
   color: inherit;
 }
 
+button{
+  background-color: transparent;
+  border: none;
+}
