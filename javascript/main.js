@@ -33,6 +33,15 @@ lm_dm_switcher.addEventListener("click", function(){
     }
 })
 // End switch between light mode and dark mode 
-// Start fetching data from the API 
-
-// End fetching data from the API 
+// Start showing countries filtering by region 
+let filter_selection = document.querySelector(".filter");
+filter_selection.addEventListener("change",function(){
+    let filterByregionValue = filter_selection.value;
+    fetch("https://restcountries.com/v3.1/region/" + filterByregionValue)
+        .then(result => result.json())
+        .then(result => {
+            document.querySelector(".carte__image").style.backgroundImage= result[0].flags.png;
+            console.log(result)
+        })
+})
+// End showing countries fitlring by region 
