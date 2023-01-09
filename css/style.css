@@ -134,19 +134,39 @@
     /* End main  */
 /* End blocks */
 
-
+.cartes{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem
+}
+.cartes > *{
+    flex-grow: 3;
+}
+@media(max-width: 45em){
+    .cartes{
+        padding-inline: 2rem;
+    }
+}
 .carte{
-    border: 1px solid green; 
     border-radius: .25rem;
     width: 15rem;
     min-height: 20rem;
-    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
+    box-shadow: 0 0 .5rem 0px rgba(0,0,0,.2);
 }
 .carte__image{
-    border-radius: .25rem;
     width: 100%;
+    height: calc(20rem - 155.6px);  
+    /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png"); */
+    background-position: center center;
+    background-size: cover
+}
+.carte__infos{
+    padding-block: 2rem;
+    padding-inline: 1rem;
+    width: 100%;
+}
+.carte__infos__title {
+    margin-top: 0;
 }

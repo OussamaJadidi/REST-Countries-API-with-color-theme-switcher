@@ -37,20 +37,45 @@
                 <option value="oceania">Oceania</option>
             </select>
         </div>
-        <!-- <div class="container">
-            <div class="carte">
-                <span class="carte__image"></span>
-                <section class="carte__infos">
-                    <p class="cate__infos__title | fw-800">Germany</p>
-                    <section class="carte__infos__data">
-                        <div> <span class="fw-600">Population: </span><span class="fw-300">81.770.900</span> </div>
-                        <div> <span class="fw-600">Region: </span><span class="fw-300">Europe</span> </div>
-                        <div> <span class="fw-600">Capital: </span><span class="fw-300">Berlin</span> </div>
-                    </section>
+        <div class="cartes | container ">
+
+        </div>
+    </main>
+    <template id="carte">
+        <div class="carte | flex-space-between">
+            <span class="carte__image"></span>
+            <section class="carte__infos">
+                <p class="carte__infos__title | fw-800">Germany</p>
+                <section class="carte__infos__data">
+                    <div> <span class="fw-600">Population: </span><span class="population fw-300">81.770.900</span> </div>
+                    <div> <span class="fw-600">Region: </span><span class="region fw-300">Europe</span> </div>
+                    <div> <span class="fw-600">Capital: </span><span class="capital fw-300">Berlin</span> </div>
+                </section>
+            </section>
+        </div>
+    </template>
+    <template id = "FullcountryData">
+        <main class="main2">
+            <button class="back-button"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="country-info-container">
+                <span class="country-info-image"></span>
+                <section class="country-info-data">
+                    <p class="counrty-info-data__title | fw-800"></p>
+                    <div class="country-info-data__micro-container">
+                        <div><span class="fw-600">Native Name:</span><span class="native-name1 fw-300"></span></div>
+                        <div><span class="fw-600">Population:</span><span class="population1 fw-300"></span></div>
+                        <div><span class="fw-600">Region:</span><span class="region1 fw-300"></span></div>
+                        <div><span class="fw-600">Sub Region:</span><span class="sub-region1 fw-300"></span></div>
+                        <div><span class="fw-600">Capital:</span><span class="capital1 fw-300"></span></div>
+                        <div><span class="fw-600">Top Level Domain:</span><span class="top-level-domain1 fw-300"></span></div>
+                        <div><span class="fw-600">Currencies:</span><span class="currencies1 fw-300"></span></div>
+                        <div><span class="fw-600">Languages:</span><span class="languages1 fw-300"></span></div>
+                    </div>
+                    <div><span class="country-info-data__border-countries fw-600">Border Countries</span><span class="border-countries1"></span></div>
                 </section>
             </div>
-        </div> -->
-    </main>
+        </main>
+    </template>
     <!-- End main  -->
 </body>
 </html>
