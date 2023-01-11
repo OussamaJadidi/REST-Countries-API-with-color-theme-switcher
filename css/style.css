@@ -83,90 +83,95 @@
     }
     /* End header  */
     /* Start main  */
-    .searchFilterBar{
-        padding-block: 2rem;
-    }
-    .searchFilterBar > *{
-        min-height: 3rem;
-        background-color: var(--lm-inputs);
-        display:flex;
-        align-items: center;
-        align-content: center;
-        max-width: 100%;
-        border-radius: .25rem;
-        box-shadow: 0 0 .4rem -5px rgba(0,0,0,.2);
-    }
-    .input-container i{
-        padding-inline: 1rem;
-        color: var(--dm-inputs);
-    }
-    .input-container input{
-        background-color: transparent;
-        width: 100%;
-    }
-    @media(max-width: 40em){
-        .searchFilterBar{
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .searchFilterBar label{
-            margin: 0 0 2rem 0;
-        }
-        .input-container{
-            width: 100%;
-        }
-        .searchFilterBar select{
-            width: 50vw;
-        }
-    }
-    .input-container input:focus{
-        outline: none;
-    }
-    .region-filter {
-        padding-inline: 1rem;
-        width: 15rem;
-        height: 100%;
-        cursor: pointer;
-        outline: none;
-        border: none;
-        color: var(--dm-inputs)
-    }
+        /* start second header "filter by region and search countries Bar" */
+            .searchFilterBar{
+                padding-block: 2rem;
+            }
+            .searchFilterBar > *{
+                min-height: 3rem;
+                background-color: var(--lm-inputs);
+                display:flex;
+                align-items: center;
+                align-content: center;
+                max-width: 100%;
+                border-radius: .25rem;
+                box-shadow: 0 0 .4rem -5px rgba(0,0,0,.2);
+            }
+            .input-container i{
+                padding-inline: 1rem;
+                color: var(--dm-inputs);
+            }
+            .input-container input{
+                background-color: transparent;
+                width: 100%;
+            }
+            @media(max-width: 40em){
+                .searchFilterBar{
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .searchFilterBar label{
+                    margin: 0 0 2rem 0;
+                }
+                .input-container{
+                    width: 100%;
+                }
+                .searchFilterBar select{
+                    width: 50vw;
+                }
+            }
+            .input-container input:focus{
+                outline: none;
+            }
+            .region-filter {
+                padding-inline: 1rem;
+                width: 15rem;
+                height: 100%;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                color: var(--dm-inputs)
+            }
+        /* End second header "filter by region and search countries Bar" */
+        /* Start the main block that display all the countries's cartes  */
+            .cartes{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 2rem
+            }
+            .cartes > *{
+                flex-grow: 3;
+            }
+            @media(max-width: 45em){
+                .cartes{
+                    padding-inline: 2rem;
+                }
+            }
+            .carte{
+                border-radius: .25rem;
+                width: 15rem;
+                min-height: 20rem;
+                flex-direction: column;
+                box-shadow: 0 0 .5rem 0px rgba(0,0,0,.2);
+            }
+            .carte__image{
+                width: 100%;
+                height: calc(20rem - 155.6px);  
+                /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png"); */
+                background-position: center center;
+                background-size: 100% 100%
+            
+            }
+            .carte__infos{
+                padding-block: 2rem;
+                padding-inline: 1rem;
+                width: 100%;
+            }
+            .carte__infos__title {
+                margin-top: 0;
+            }
+        /* End the main block that display all the countries's cartes  */
     /* End main  */
 /* End blocks */
 
-.cartes{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem
-}
-.cartes > *{
-    flex-grow: 3;
-}
-@media(max-width: 45em){
-    .cartes{
-        padding-inline: 2rem;
-    }
-}
-.carte{
-    border-radius: .25rem;
-    width: 15rem;
-    min-height: 20rem;
-    flex-direction: column;
-    box-shadow: 0 0 .5rem 0px rgba(0,0,0,.2);
-}
-.carte__image{
-    width: 100%;
-    height: calc(20rem - 155.6px);  
-    /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png"); */
-    background-position: center center;
-    background-size: cover
-}
-.carte__infos{
-    padding-block: 2rem;
-    padding-inline: 1rem;
-    width: 100%;
-}
-.carte__infos__title {
-    margin-top: 0;
-}
