@@ -75,7 +75,7 @@
             
             let template = document.querySelector("#carte");
             let templateContent = template.content.cloneNode(true);
-            templateContent.querySelector(".carte__image").style.backgroundImage="url('"+result[i].flags.png+"')";
+            templateContent.querySelector(".carte__image").style.backgroundImage= "url('"+result[i].flags.png+"')";
             thisIsRegionApi===false ?
             templateContent.querySelector(".carte__infos__title").textContent = result[i].name :
             templateContent.querySelector(".carte__infos__title").textContent = result[i].name.common;
@@ -105,58 +105,53 @@
 // End function that display countries's cartes full of their data  
 // Start function that display page with full-data of the country clicked
     let originalURL = document.URL;
-    async function showFullCountryData(result,thisIsRegionApi,id){
-        /* emptye the screen to display the new page */ 
+    async function showFullCountryData(countryFullData,thisIsRegionApi,id){
+        /* emptye the screen to display the new page "full data of the country clicked"*/ 
         let main = document.querySelector(".main");
         main.style.display="none";
         let template = document.querySelector("#FullcountryData")
         let templateContent = template.content.cloneNode(true);
         /* The country data must fetched from the global API because the regional API miss some data */
-        let r2;
+        let countryName= countryFullData.name;
+        let filterType;
         if(thisIsRegionApi){
-            if(africa || america || asia || europe || oceania){
-                if(america) r2 = america;
-                if(africa) r2 = africa;
-                if(asia) r2 = asia;
-                if(europe) r2 = europe;
-                if(oceania) r2 = oceania;
-                console.log("region")
-                
-            }else{
-                let r1 = await fetch("https://restcountries.com/v2/all");
-                r2 = await r1.json();
-                console.log("global")
-            }
-            let r3 = result.name.common;
-            for(let i=0;i< r2.length;i++){
-                if(r2[i].name == r3){
-                    
-                    var r4 = r2[i];
-                    break;
+            countryName= countryFullData.name.common;   
+            // console.log(result)
+            if(africa){
+                    for(let i=0;i< result.length;i++){
+                        // console.log(countryName,result[i].name)
+                        // console.log(result[i])
+                        if(countryName == result[i].name){
+                            // console.log(countryName,result[i].name)
+                            console.log("----------------------------------------------------")
+                            countryFullData = result[i];
+                            console.log("yohoooo")
+                            break;
+                        }
                     }
-                }
-            result=r4;
+            }
         }
+        console.log(countryFullData)
         /* Fill out API data in the template and display it in the screen */
-        templateContent.querySelector(".country-info-image").style.backgroundImage= "url('"+result.flags.png+"')";
-        templateContent.querySelector(".counrty-info-data__title").textContent= result.name;
-        templateContent.querySelector(".native-name1").textContent = result.nativeName;
-        templateContent.querySelector(".population1").textContent = result.population;
-        templateContent.querySelector(".region1").textContent = result.region;
-        templateContent.querySelector(".sub-region1").textContent = result.subregion;
-        templateContent.querySelector(".capital1").textContent = result.capital;
+        templateContent.querySelector(".country-info-image").style.backgroundImage= "url('"+countryFullData.flags.png+"')";
+        templateContent.querySelector(".counrty-info-data__title").textContent= countryFullData.name;
+        templateContent.querySelector(".native-name1").textContent = countryFullData.nativeName;
+        templateContent.querySelector(".population1").textContent = countryFullData.population;
+        templateContent.querySelector(".region1").textContent = countryFullData.region;
+        templateContent.querySelector(".sub-region1").textContent = countryFullData.subregion;
+        templateContent.querySelector(".capital1").textContent = countryFullData.capital;
         templateContent.querySelector(".top-level-domain1").textContent = Names("topLevelDomain",""); 
         templateContent.querySelector(".currencies1").textContent = Names("currencies","name");
         templateContent.querySelector(".languages1").textContent = Names("languages","name");
         templateContent.querySelector(".border-countries1").textContent = Names("borders","");
         function Names(search,name){
-            let resultNames=[];
-            if(!result[search]) return ""
-            for(let j=0; j<result[search].length; j++){
-                let FinalResult = result[search];
-                name !== "" ?  resultNames.push(result[search][j][name]) : resultNames.push(FinalResult[j]);
+            let countryFullDataNames=[];
+            if(!countryFullData[search]) return ""
+            for(let j=0; j<countryFullData[search].length; j++){
+                let FinalcountryFullData = countryFullData[search];
+                name !== "" ?  countryFullDataNames.push(countryFullData[search][j][name]) : countryFullDataNames.push(FinalcountryFullData[j]);
             } 
-            return resultNames.join(",");
+            return countryFullDataNames.join(",");
         }
         /* script of clicking "back" button */ 
         templateContent.querySelector(".back-button").addEventListener("click",function(){
@@ -194,7 +189,7 @@
         if (filterSelectionValue === "africa"){
             /* if the API already fetched and his data saved in "result" variable*/ 
             if(africa){
-                displayApiData(africa,false);
+                displayApiData(africa,true);
             }else{
                 fetchingData("africa");
             }
@@ -203,7 +198,7 @@
         if (filterSelectionValue === "america"){
             /* if the API already fetched and his data saved in "result" variable*/ 
             if(america){
-                displayApiData(america,false);
+                displayApiData(america,true);
             }else{
                 fetchingData("america");
             }
@@ -212,7 +207,7 @@
         if (filterSelectionValue === "asia"){
             /* if the API already fetched and his data saved in "result" variable*/ 
             if(asia){
-                displayApiData(asia,false);
+                displayApiData(asia,true);
             }else{
                 fetchingData("asia");
             }
@@ -221,7 +216,7 @@
         if (filterSelectionValue === "europe"){
             /* if the API already fetched and his data saved in "result" variable*/ 
             if(europe){
-                displayApiData(europe,false);
+                displayApiData(europe,true);
             }else{
                 fetchingData("europe");
             }
@@ -230,7 +225,7 @@
         if (filterSelectionValue === "oceania"){
             /* if the API already fetched and his data saved in "result" variable*/ 
             if(oceania){
-                displayApiData(oceania,false);
+                displayApiData(oceania,true);
             }else{
                 fetchingData("oceania");
             }
