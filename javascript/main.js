@@ -116,20 +116,13 @@
         let filterType;
         if(thisIsRegionApi){
             countryName= countryFullData.name.common;   
-            // console.log(result)
-            if(africa){
-                    for(let i=0;i< result.length;i++){
-                        // console.log(countryName,result[i].name)
-                        // console.log(result[i])
-                        if(countryName == result[i].name){
-                            // console.log(countryName,result[i].name)
-                            console.log("----------------------------------------------------")
-                            countryFullData = result[i];
-                            console.log("yohoooo")
-                            break;
-                        }
-                    }
+            for(let i=0;i< result.length;i++){
+                if(countryName == result[i].name){
+                    countryFullData = result[i];
+                    break;
+                }
             }
+            
         }
         console.log(countryFullData)
         /* Fill out API data in the template and display it in the screen */
