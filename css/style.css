@@ -18,69 +18,69 @@
 
 /* I will work with CUBE css metholodogie + write my classes with BEM metholodogie way  */
 /* Start Compositions  */
-.container{
-    max-width: 60rem;
-    margin: auto;
-    padding-inline: 1rem;
-}
-.flex-space-between{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-}
+    .container{
+        max-width: 60rem;
+        margin: auto;
+        padding-inline: 1rem;
+    }
+    .flex-space-between{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+    }
 /* End Compositions  */
 /* Start utilities classes  */
-.fw-300{
-    font-weight: 300;
-}
-.fw-600{
-    font-weight: 600;
-}
-.fw-800{
-    font-weight: 800;
-}
-.fs-16{
-    font-size: 1rem
-}
-.fs-14{
-    font-size: 14px;
-}
-.lm-text{
-    color: var(--lm-text);
-}
-.lm-elemnts{
-    color: var(--lm-elements)
-}
-.dm-text{
-    color: var(--dm-text)
-}
-.dm-elements{
-    color: var(--dm-elements)
-}
-.lm-inputs{
-    background-color: var(--lm-inputs);
-}
-.lm-background{
-    background-color: var(--lm-background);
-}
-.dm-background{
-    background-color: var(--dm-background);
-}
+    .fw-300{
+        font-weight: 300;
+    }
+    .fw-600{
+        font-weight: 600;
+    }
+    .fw-800{
+        font-weight: 800;
+    }
+    .fs-16{
+        font-size: 1rem
+    }
+    .fs-14{
+        font-size: 14px;
+    }
+    .lm-text{
+        color: var(--lm-text);
+    }
+    .lm-elemnts{
+        color: var(--lm-elements)
+    }
+    .dm-text{
+        color: var(--dm-text)
+    }
+    .dm-elements{
+        color: var(--dm-elements)
+    }
+    .lm-inputs{
+        background-color: var(--lm-inputs);
+    }
+    .lm-background{
+        background-color: var(--lm-background);
+    }
+    .dm-background{
+        background-color: var(--dm-background);
+    }
 /* End utilities classes  */
 /* Start blocks */
     /* start header  */
-    .header{
-        min-height: 100% ;
-        box-shadow: 0 0px 5px rgba(0,0,0,.2)
-    }
-    .header > div{
-        width: 100%;
-        min-height: 4rem;
-    }
-    button{
-        cursor: pointer;
-    }
+        .header{
+            min-height: 100% ;
+            box-shadow: 0 0px 5px rgba(0,0,0,.2)
+        }
+        .header > div{
+            width: 100%;
+            min-height: 4rem;
+        }
+        button{
+            cursor: pointer;
+        }
     /* End header  */
     /* Start main  */
         /* start second header "filter by region and search countries Bar" */

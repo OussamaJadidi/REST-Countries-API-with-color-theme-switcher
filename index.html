@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Countries API App</title>
     <!-- CSS links  -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/normalize.css">
@@ -29,13 +29,13 @@
         <!-- start the second header of "searching countries by name & filter countiries by region" -->
         <div class="searchFilterBar | container | flex-space-between">
                 <form action="" class="form">
-                    <label for="" class="input-container | lm-inputs lm-text fw-300 | flex-space-between"><i class="fa-solid fa-magnifying-glass | fs-14"></i><input class="searchInput" list="countries-name" placeholder="Search for a country..." class="fs-14"></label>
+                    <label for="" class="input-container | lm-inputs lm-text fw-300 | flex-space-between"><i class="fa-solid fa-magnifying-glass | fs-14"></i><input class="searchInput" list="countries-name" placeholder="Search for a country..." autofocus class="fs-14" ></label>
                     <datalist id="countries-name">
                     </datalist>
                 </form>
             <select class="region-filter | fw-600" name="FilterByRegion" id="region" value="naaah" >
                 <option value="all">Filter by Region</option>
-                <option value="africa">Arfica</option>
+                <option value="africa">Africa</option>
                 <option value="america">America</option>
                 <option value="asia">Asia</option>
                 <option value="europe">Europe</option>
@@ -50,6 +50,7 @@
         <!-- End display cartes of countries -->
     </main>
     <!-- End main  -->
+
     <!-- start the template of carte that display a country's data  -->
     <template id="carte">
         <div class="carte | flex-space-between">

@@ -33,37 +33,46 @@
         }
     })
 // End switch light mode and dark mode 
-// Start showing countires's cartes
-
-    /* this function will fetch APIS data and show every country data in a carte*/
+// Start function that fetch the Api 
     let dataApiFetched= false;
-    let result;
+    let result,africa,america,asia,europe,oceania;
     async function fetchingData(region){
         let result1;
         let thisIsRegionApi;
         /* if the user want the counties displayed filtered by region*/
         if(region){
             result1 = await fetch("https://restcountries.com/v3.1/region/"+region);
-            thisIsRegionApi=true;
-            dataApiFetched = true;
+                
+                thisIsRegionApi=true;
+                dataApiFetched = true;
+                
+                let result = await result1.json(); // that's a new variable available just in that block and not affect the global variable result
+                displayApiData(result,thisIsRegionApi);
 
-            let result = await result1.json(); // that's a new variable available just in that block and not affect the global variable result
-            displayApiData(result,thisIsRegionApi);
-        }else{
-            result1 = await fetch("https://restcountries.com/v2/all");
-            thisIsRegionApi=false;
-
-            result = await result1.json(); // result referr to the global variable result
-            displayApiData(result,thisIsRegionApi);
-        }
-
+                
+                if(region === "africa") africa= result; 
+                if(region === "america") america= result; 
+                if(region === "asia")  asia = result; 
+                if(region === "europe")  europe = result; 
+                if(region === "oceania")  oceania = result; 
+            }else{
+                if(result){
+                    displayApiData(result,thisIsRegionApi);
+                }
+                result1 = await fetch("https://restcountries.com/v2/all");
+                thisIsRegionApi=false;
+                
+                result = await result1.json(); // result referr to the global variable result
+                displayApiData(result,thisIsRegionApi);
+            }
     }
     fetchingData()
-    /* the function start display counrties data in the screen */
+// Start function that fetch the Api 
+// Start function that display countries's cartes full of their data 
     let once = false;
-    console.log("t7t l once")
     function displayApiData(result,thisIsRegionApi){
         for(let i=0; i<result.length;i++){
+            
             let template = document.querySelector("#carte");
             let templateContent = template.content.cloneNode(true);
             templateContent.querySelector(".carte__image").style.backgroundImage="url('"+result[i].flags.png+"')";
@@ -83,7 +92,6 @@
             })
             /* add the countries name to the datalist 'id="countries-name" options'*/
             if(once === false){
-                console.log("once")
                 let option = document.createElement("option");
                 option.setAttribute("value",result[i].name);
                 option.textContent= result[i].name;
@@ -94,33 +102,42 @@
         }
         once=true;
     }
+// End function that display countries's cartes full of their data  
+// Start function that display page with full-data of the country clicked
     let originalURL = document.URL;
-    
-    /* this function was called in "fetchingData" function */
     async function showFullCountryData(result,thisIsRegionApi,id){
-        /* remove everything but the header*/
+        /* emptye the screen to display the new page */ 
         let main = document.querySelector(".main");
         main.style.display="none";
-        /* display the full data of the country clicked  under the header*/ 
         let template = document.querySelector("#FullcountryData")
         let templateContent = template.content.cloneNode(true);
-        /* in this if statement we try to find the counrty that we are dealing with in the global api  
-            "https://restcountries.com/v2/all",
-            if thisIsRegionApi===true thats mean we are in this api : "https://restcountries.com/v3.1/region/..."
-        */
+        /* The country data must fetched from the global API because the regional API miss some data */
+        let r2;
         if(thisIsRegionApi){
-            let r1 = await fetch("https://restcountries.com/v2/all");
-            let r2 = await r1.json();
+            if(africa || america || asia || europe || oceania){
+                if(america) r2 = america;
+                if(africa) r2 = africa;
+                if(asia) r2 = asia;
+                if(europe) r2 = europe;
+                if(oceania) r2 = oceania;
+                console.log("region")
+                
+            }else{
+                let r1 = await fetch("https://restcountries.com/v2/all");
+                r2 = await r1.json();
+                console.log("global")
+            }
             let r3 = result.name.common;
             for(let i=0;i< r2.length;i++){
                 if(r2[i].name == r3){
+                    
                     var r4 = r2[i];
                     break;
+                    }
                 }
-            }
             result=r4;
         }
-        console.log(result)
+        /* Fill out API data in the template and display it in the screen */
         templateContent.querySelector(".country-info-image").style.backgroundImage= "url('"+result.flags.png+"')";
         templateContent.querySelector(".counrty-info-data__title").textContent= result.name;
         templateContent.querySelector(".native-name1").textContent = result.nativeName;
@@ -141,40 +158,85 @@
             } 
             return resultNames.join(",");
         }
-        // Start eventListner onclick the ".back-button" button 
+        /* script of clicking "back" button */ 
         templateContent.querySelector(".back-button").addEventListener("click",function(){
             document.querySelector(".main2").remove();
             document.querySelector(".main").style="block";
             window.history.replaceState({}, ""," ");
             location.replace(originalURL+"#"+id);
             window.scrollBy(0,-200);
-
+            
             setTimeout(function(){
                 window.history.replaceState({}, "", " ")
             },100)
         })
-        // End everntListner onclick the ".back-button" button 
+        /* append full page after the header */
         document.querySelector(".header").after(templateContent)
     }
-// End showing countries's cartes
+// Start function that display page with full-data of the country clicked
 // Start showing countries's cartes filtering by region 
     let filterSelection = document.querySelector(".region-filter");
     filterSelection.addEventListener("change",function(){
         let filterSelectionValue = filterSelection.value;
+        /*empty the screen to show other countries */
         let cartesChildes = [...document.querySelectorAll(".cartes > *")];
-        cartesChildes.forEach(cartesChild => cartesChild.remove())
+        cartesChildes.forEach(cartesChild => cartesChild.remove());
+        /* if we want all regions countries */
         if (filterSelectionValue === "all"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
             if(result){
-                console.log("result is here")
-                console.log(result)
                 displayApiData(result,false);
             }else{
-                console.log("result is not here")
                 fetchingData();
             }
             return;
         }
-        fetchingData(filterSelectionValue)
+        if (filterSelectionValue === "africa"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
+            if(africa){
+                displayApiData(africa,false);
+            }else{
+                fetchingData("africa");
+            }
+            return;
+        }
+        if (filterSelectionValue === "america"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
+            if(america){
+                displayApiData(america,false);
+            }else{
+                fetchingData("america");
+            }
+            return;
+        }
+        if (filterSelectionValue === "asia"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
+            if(asia){
+                displayApiData(asia,false);
+            }else{
+                fetchingData("asia");
+            }
+            return;
+        }
+        if (filterSelectionValue === "europe"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
+            if(europe){
+                displayApiData(europe,false);
+            }else{
+                fetchingData("europe");
+            }
+            return;
+        }
+        if (filterSelectionValue === "oceania"){
+            /* if the API already fetched and his data saved in "result" variable*/ 
+            if(oceania){
+                displayApiData(oceania,false);
+            }else{
+                fetchingData("oceania");
+            }
+            return;
+        }
+
     })
 // End showing countries's cartes fitlring by region 
 // Start display the country searched by the user 
@@ -182,7 +244,6 @@
     let form = document.querySelector(".form")
     form.addEventListener("submit",function(e){
         e.preventDefault();
-        console.log("submit")
     })
     searchInput.addEventListener("change",function(){
         let inputValue = document.querySelector(".searchInput").value;
@@ -199,6 +260,8 @@
             aa.remove();
         })
         displayApiData(countryThatWeLookingFor,false)
+        document.querySelector(".cartes > *").style.cssText="max-width:20rem;margin-inline:auto;margin-bottom: 112px";
+        document.querySelector(".searchInput").value=""
     })
 
 // End display the country searched by the user 
