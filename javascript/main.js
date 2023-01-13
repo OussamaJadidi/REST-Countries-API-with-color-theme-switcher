@@ -12,7 +12,7 @@
         getComputedStyle(document.documentElement).getPropertyValue("--dm-elements"),
         getComputedStyle(document.documentElement).getPropertyValue("--dm-inputs")]
     lm_dm_switcher.addEventListener("click", function(){
-        if(mode==="light"){
+        if(mode === "light"){
             lm_dm_switcher.querySelector("i").className="fa-regular fa-moon";
             lm_dm_switcher.querySelector("span").textContent="Light mode";
 
