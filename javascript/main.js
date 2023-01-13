@@ -48,7 +48,6 @@
                 
                 let result = await result1.json(); // that's a new variable available just in that block and not affect the global variable result
                 displayApiData(result,thisIsRegionApi);
-
                 
                 if(region === "africa") africa= result; 
                 if(region === "america") america= result; 
@@ -65,7 +64,7 @@
                 result = await result1.json(); // result referr to the global variable result
                 displayApiData(result,thisIsRegionApi);
             }
-    }
+        }
     fetchingData()
 // Start function that fetch the Api 
 // Start function that display countries's cartes full of their data 
@@ -97,7 +96,6 @@
                 option.textContent= result[i].name;
                 document.querySelector("#countries-name").append(option);
             }
-            
             cartes.append(templateContent);
         }
         once=true;
@@ -124,10 +122,9 @@
             }
             
         }
-        console.log(countryFullData)
         /* Fill out API data in the template and display it in the screen */
         templateContent.querySelector(".country-info-image").style.backgroundImage= "url('"+countryFullData.flags.png+"')";
-        templateContent.querySelector(".counrty-info-data__title").textContent= countryFullData.name;
+        templateContent.querySelector(".country-info-data__title").textContent= countryFullData.name;
         templateContent.querySelector(".native-name1").textContent = countryFullData.nativeName;
         templateContent.querySelector(".population1").textContent = countryFullData.population;
         templateContent.querySelector(".region1").textContent = countryFullData.region;
@@ -136,7 +133,7 @@
         templateContent.querySelector(".top-level-domain1").textContent = Names("topLevelDomain",""); 
         templateContent.querySelector(".currencies1").textContent = Names("currencies","name");
         templateContent.querySelector(".languages1").textContent = Names("languages","name");
-        templateContent.querySelector(".border-countries1").textContent = Names("borders","");
+        Names("borders","")
         function Names(search,name){
             let countryFullDataNames=[];
             if(!countryFullData[search]) return ""
@@ -144,8 +141,23 @@
                 let FinalcountryFullData = countryFullData[search];
                 name !== "" ?  countryFullDataNames.push(countryFullData[search][j][name]) : countryFullDataNames.push(FinalcountryFullData[j]);
             } 
-            return countryFullDataNames.join(",");
+            if(search !== "borders") return countryFullDataNames.join(",");
+
+            // if you would ask why didn't write that in an undependent funciton
+            // answer because we have to looking for "countryFullData" variable again
+            for(let i=0;i< result.length;i++){
+                for(let j=0;j<countryFullData.borders.length;j++){
+                    if(countryFullData.borders[j] != result[i].alpha3Code) continue;
+
+                    let borderCountryName = result[i].name;
+                    let span = document.createElement("span");
+                    span.textContent = borderCountryName;
+                    span.classList.add("border-countries1Inside");
+                    templateContent.querySelector(".border-countries1").append(span)
+                }
+            }
         }
+         
         /* script of clicking "back" button */ 
         templateContent.querySelector(".back-button").addEventListener("click",function(){
             document.querySelector(".main2").remove();
@@ -248,7 +260,8 @@
             aa.remove();
         })
         displayApiData(countryThatWeLookingFor,false)
-        document.querySelector(".cartes > *").style.cssText="max-width:20rem;margin-inline:auto;margin-bottom: 112px";
+    document.querySelector(".cartes > *").style.cssText="max-width:20rem;margin-inline:auto; height: 20rem";
+    document.querySelector(".cartes").style.cssText = "height: calc(100vh - 176px);"
         document.querySelector(".searchInput").value=""
     })
 

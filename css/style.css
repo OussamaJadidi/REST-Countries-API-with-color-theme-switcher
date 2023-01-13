@@ -8,7 +8,11 @@
 
     --lm-background: hsl(0, 0%, 98%);
     --lm-text: hsl(200, 15%, 8%);
-    --lm-elements: hsl(0, 0%, 100%); 
+    --lm-elements: hsl(0, 0%, 100%);
+    
+    --fw-300: 300;
+    --fw-600: 600;
+    --fw-800: 800;
 }
 
 *{
@@ -32,13 +36,13 @@
 /* End Compositions  */
 /* Start utilities classes  */
     .fw-300{
-        font-weight: 300;
+        font-weight: var(--fw-300);
     }
     .fw-600{
-        font-weight: 600;
+        font-weight: var(--fw-600);
     }
     .fw-800{
-        font-weight: 800;
+        font-weight: var(--fw-800);
     }
     .fs-16{
         font-size: 1rem
@@ -87,6 +91,11 @@
             .searchFilterBar{
                 padding-block: 2rem;
             }
+            @media(max-width: 40em){
+                .searchFilterBar{
+                    padding-block: 1.5rem;
+                }
+            }
             .searchFilterBar > *{
                 min-height: 3rem;
                 background-color: var(--lm-inputs);
@@ -95,7 +104,11 @@
                 align-content: center;
                 max-width: 100%;
                 border-radius: .25rem;
-                box-shadow: 0 0 .4rem -5px rgba(0,0,0,.2);
+                box-shadow: 0 0 .75rem -5px rgba(0,0,0,.2);
+            }
+            
+            .input-container{
+                align-content: center ;
             }
             .input-container i{
                 padding-inline: 1rem;
@@ -109,9 +122,7 @@
                 .searchFilterBar{
                     flex-direction: column;
                     align-items: flex-start;
-                }
-                .searchFilterBar label{
-                    margin: 0 0 2rem 0;
+                    gap: 1rem;
                 }
                 .input-container{
                     width: 100%;
@@ -130,15 +141,16 @@
                 cursor: pointer;
                 outline: none;
                 border: none;
-                color: var(--dm-inputs)
+                color: var(--dm-inputs);
             }
-        /* End second header "filter by region and search countries Bar" */
+            /* End second header "filter by region and search countries Bar" */
         /* Start the main block that display all the countries's cartes  */
             .cartes{
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
-                gap: 2rem
+                gap: 2rem;
+                cursor: pointer;
             }
             .cartes > *{
                 flex-grow: 3;
@@ -155,13 +167,16 @@
                 flex-direction: column;
                 box-shadow: 0 0 .5rem 0px rgba(0,0,0,.2);
             }
+            .carte:hover{
+                box-shadow: 0 0 .5rem 0px rgba(0,0,0,.7);
+            }
             .carte__image{
                 width: 100%;
                 height: calc(20rem - 155.6px);  
                 /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png"); */
                 background-position: center center;
-                background-size: 100% 100%
-            
+                background-size: 100% 100%;
+                transition: .1s ease-in-out;
             }
             .carte__infos{
                 padding-block: 2rem;
@@ -172,6 +187,83 @@
                 margin-top: 0;
             }
         /* End the main block that display all the countries's cartes  */
+        /* Start ".main2" page of full-data of the country clicked  */
+            .main2{
+                min-height: calc(100vh - 64px);
+            }
+            .back-button{
+                padding-inline: 1.7rem;
+                padding-block: .6rem;
+                margin-block: 2rem;
+                box-shadow: 0 0 .5rem 0 rgba(0,0,0,.2);
+                border-radius: .3rem;
+            }
+            @media (min-width: 40em){
+                .country-info-container{
+                    gap: 5rem;
+                }
+            }
+            @media(max-width: 40em){
+                .country-info-container{
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+            .country-info-image{
+                display: block;
+                width: 30rem;
+                max-width: 100%;
+                height: 20rem;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+            @media(max-width: 40em){
+                .country-info-image{
+                    width: 40rem;
+                    max-width: 100%;
+                    height: 15rem;
+                } 
+            }
+            .country-info-data{
+                width: 50%;
+                min-height: 20rem;
+                container-type : inline-size;
+            }
+            @media(max-width: 40em) {
+                .country-info-data{
+                    width: 100%;
+                }
+            }
+            .country-info-data__title{
+                font-size: 1.75rem;
+            }
+            .country-info-data__micro-container{
+                align-items: flex-start;
+            }
+            @container (max-width: 25em){
+                .country-info-data__micro-container{
+                    flex-direction: column;
+                }
+            }
+            .country-info-data__micro-container > * > *{
+                padding-bottom: 5px;
+            }
+            .country-info-data__border-countries{
+                padding-block: 2rem;
+            }
+            .border-countries1{
+            }
+            .border-countries1Inside {
+                font-weight: var(--fw-300);
+                display: inline-block;
+                padding-block: .25rem;
+                padding-inline: .7rem;
+                box-shadow: 0 0 .5rem 0 rgba(0,0,0,.2);
+                border-radius: .25rem;
+                font-size: 14px;
+            }
+           
+        /* End ".main2" page of full-data of the country clicked  */
     /* End main  */
 /* End blocks */
 
