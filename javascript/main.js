@@ -165,7 +165,6 @@
             window.history.replaceState({}, ""," ");
             location.replace(originalURL+"#"+id);
             window.scrollBy(0,-200);
-            
             setTimeout(function(){
                 window.history.replaceState({}, "", " ")
             },100)
@@ -236,7 +235,6 @@
             }
             return;
         }
-
     })
 // End showing countries's cartes fitlring by region 
 // Start display the country searched by the user 
@@ -261,8 +259,23 @@
         })
         displayApiData(countryThatWeLookingFor,false)
     document.querySelector(".cartes > *").style.cssText="max-width:20rem;margin-inline:auto; height: 20rem";
-    document.querySelector(".cartes").style.cssText = "height: calc(100vh - 176px);"
         document.querySelector(".searchInput").value=""
     })
-
 // End display the country searched by the user 
+// start show a button to go top 
+document.addEventListener("scroll",function(){
+    if(scrollY >= 850){
+        document.querySelector(".backToTop").style.display="block";
+    }
+    if(scrollY < 850){
+        document.querySelector(".backToTop").style.display= "none";
+    }
+})
+document.querySelector(".backToTop").addEventListener("click",function(){
+    window.scrollTo ({
+        left: 0,
+        top: 0,
+        behavior: "smooth"
+    })
+})
+// End show a button to go top 

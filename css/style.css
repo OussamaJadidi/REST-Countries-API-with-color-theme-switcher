@@ -78,10 +78,12 @@
    
 /* End utilities classes  */
 /* Start blocks */
+    /* Start General */
+
+    /* End General */
     /* start header  */
         .header{
             min-height: 100% ;
-            box-shadow: 0 0px 5px rgba(0,0,0,.2);
             background-color: var(--lm-elements);
         }
         .header *{
@@ -172,6 +174,7 @@
                 flex-wrap: wrap;
                 gap: 2rem;
                 cursor: pointer;
+                min-height: calc(100vh - 176px);
             }
             .cartes > *{
                 flex-grow: 3;
@@ -302,6 +305,24 @@
             }
            
         /* End ".main2" page of full-data of the country clicked  */
+        /* Start styling the button of back to top  */
+        .backToTop{
+            display: none;
+            width: 4rem;
+            height: 4rem;
+            border-radius: .25rem;
+            background-color: var(--lm-elements);
+            border: 1px solid var(--lm-text);
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            transform: rotate(90deg);
+            font-size: 1.5rem;
+        }
+        .backToTop i{
+            color: var(--lm-text)
+        }
+        /* End styling the button of back to top  */
     /* End main  */
 /* End blocks */
 
